@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Activity 1: DOM manipulation</title>
+  </head>
+  <body>
+    <h1>Activity 1: DOM manipulation</h1>
+    <p>On this activity we will show the data in the variable employees in this html as a table, build all the elements with js functions</p>
+    <div id="table-container"></div>
+    <script>
+     
+     
+     var employees = [{"id":1,"name":"MIRIAM CASTIÑEIRA BREA","department":"IT"},
+     {"id":2,"name":"GONZALO MULET FIGUERAS","department":"IT"},
+     {"id":3,"name":"FRANCISCO JOSE GRAÑA BARBERA","department":"IT"},
+     {"id":4,"name":"IRENE POMBO JORDA","department":"HR"}];
+     var list =["Identificador","Nombre","Departamento"];
+      
+    var divT = document.querySelector('#table-container');
+    var TABLE = document.createElement('table');
+    TABLE.className = "table";
+    
+    var THEAD = document.createElement('thead');
+    var TR = document.createElement('tr');
+    var TH=[];
+    for(i=0;i<list.length;i++) {
+      TH[i] = document.createElement('th');
+      TH[i].append(list[i]);
+      this.THEAD.appendChild(TH[i]);
+    }
+   
+    var TBODY = document.createElement('tbody');
+    
+    this.employees.forEach( item=>{
+      let TR = document.createElement('tr');
+      let TD = document.createElement('td');
+      TD.append(item.id);
+      TR.appendChild(TD);
+      TD = document.createElement('td');
+      TD.append(item.name);
+      TR.appendChild(TD);
+      TD = document.createElement('td');
+      TD.append(item.department);
+      TR.appendChild(TD)
+      TD = document.createElement('td');
+      this.TBODY.appendChild(TR);
+    })  
+    TABLE.appendChild(THEAD);
+    TABLE.appendChild(TBODY)
+    
+    divT.append(TABLE)
+
+    </script>
+  </body>
+</html>
