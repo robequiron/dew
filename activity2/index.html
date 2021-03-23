@@ -21,14 +21,23 @@
 
       $(document).ready(function() {
 
+        $('#table-container').append('<p>No vamos</p>')
+
         $.getJSON('employees.json',
           (data)=>{
-            console.log(data)
+              if (data.length) {
+               console.log(data)
+              }
           }
         )
 
 
       })
+
+      function cabeceraTabla() {
+        
+
+      }
 
 
     </script>
