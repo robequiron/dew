@@ -21,23 +21,38 @@
 
       $(document).ready(function() {
 
-        $('#table-container').append('<p>No vamos</p>')
-
-        $.getJSON('employees.json',
+        $.ajax('employees.json').then(
           (data)=>{
-              if (data.length) {
-               console.log(data)
-              }
+            try {
+
+              $('#table-container').append('<table class="table"><thead></thead><tbody></tbody></table>');
+              data.forEach((item, i ) => {
+                //Creamos la cabecera y la primera linea
+                if (i===0) {
+                  $('#table-container table thead').append('<tr></tr>');
+                } 
+                //Creamos el cuerpo del cuerpo y la fila
+                $('#table-container table tbody').append('<tr></tr>');
+
+                for (let key in item) {
+                  //Recorremos la columnas para crear
+                  if (i===0) {
+                    $('#table-container table thead tr:eq('+i+')').append('<th>'+ key +'</th>')
+                  }
+                  $('#table-container table tbody tr:eq('+i+')').append('<td>'+ item[key] +'</td>')
+                }
+              });
+            } catch (error) {
+              alert(error)
+            }
+          }
+        ).fail(
+          (e)=>{
+            alert("Error en la carga del Json")
           }
         )
-
-
       })
 
-      function cabeceraTabla() {
-        
-
-      }
 
 
     </script>
