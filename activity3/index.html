@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Activity 3: Forms &amp; click event</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   </head>
   <body>
     <h1>Activity 3: Forms &amp; click event</h1>
@@ -15,5 +16,92 @@
         <li>Add a table with as many rows and columns both Rows and Columns fields indicate</li>
         <li>Each table cell must contain a text like: "Row: X, Col: Y"</li>
       </ol>
+
+
+      <div class="row ml-2">
+        <div class="col-md-3">
+          <label for="exampleInputEmail1">Número de columnas</label>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" placeholder="" 
+            aria-label="Número de columnas" aria-describedby="button-addon3">
+            <div class="input-group-prepend" id="button-addon3">
+              <button class="btn btn-outline-secondary" type="button">Crear</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <label for="exampleInputEmail1">Número de filas</label>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" placeholder="" aria-label="Número de número de filas" aria-describedby="button-addon3">
+            <div class="input-group-prepend" id="button-addon3">
+              <button class="btn btn-outline-secondary" type="button">Crear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="table-container"></div>
+      </div>
+
+      
+      <script>
+        var col = 0;
+        var row = 0;
+        
+        function createTable(){
+         try {
+          $('#table-container table').remove();
+          $('#table-container').append('<table class="table"><tbody></tbody></table>');
+         } catch (error) {
+          alert(error)
+         }
+        }
+
+        function cretaRowCol() {
+          try {
+            this.col = $('input:eq(0)').val();
+            this.row = $('input:eq(1)').val();
+            if (this.col>0 && this.row===0) { this.row===1};
+            if (this.col===0 && this.row>0) { this.col===1};
+            this.createTable();
+            for (c=0;c<=this.col;c++) {
+             $('#table-container tbody').append('<tr></tr>');
+              for (f=1;f<=this.row;f++) {
+                $('#table-container tbody tr').last().append('<td></td>');
+                $('#table-container tbody tr td').last().text('Row: ' + f + ' Col: '+ c);
+              }
+            }
+          } catch (error) {
+            alert(error)
+          }
+        }
+
+        
+        $().ready(
+         
+          $('input').val(this.col),
+         
+          $('button:eq(0)').click(
+            ()=>{
+              
+              this.cretaRowCol();
+            }
+          ),
+          $('button:eq(1)').click(
+            ()=>{
+              
+              this.cretaRowCol();
+            }
+          )
+
+        )
+
+
+      </script>
+
+
   </body>
 </html>
