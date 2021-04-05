@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Activity 7: the audio tag + events</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+      .controls div{
+        float: left;
+        margin: 10px;
+        border: 3px solid #000;
+        font-size: 2em;
+        text-align: center;
+        width: 50px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Activity 7: the audio tag + events</h1>
+    <p>This is a music player with a playlist</p>
+    <ul>
+      <li>Add a play icon to the item in the playlist that is currently playing.</li>
+      <li>Add controls to <a href="https://developer.mozilla.org/es/docs/Web/HTML/Elemento/audio">audio tag</a>: play/pause, go back, go forward.</li>
+      <li>When 1 audio ends the following one must estart playing automatically</li>
+    </ul>
+
+    <div class="row ml-1">
+      <div class="col-md-1 d-flex justify-content-left pt-1">
+          <div id="backward" class="rounded-circle bg-info 
+          d-flex 
+          justify-content-center
+          align-content-center mr-1" style="height: 25px; width: 25px;">
+            <div class="text-center">
+              <i class="fa fa-step-backward"></i>
+            </div>
+          </div>
+
+          <div id="play" class="rounded-circle bg-info 
+          d-flex 
+          justify-content-center
+          align-content-center mr-1" style="height: 25px; width: 25px;">
+            <div class="text-center pl-1">
+              <i class="fa fa-play"></i>
+            </div>
+          </div>
+
+          <div id="pause" class="rounded-circle bg-info 
+          d-flex 
+          justify-content-center
+          align-content-center mr-1" style="height: 25px; width: 25px;">
+            <div class="text-center">
+              <i class="fa fa-pause"></i>
+            </div>
+          </div>
+          
+          <div id="forward" class="rounded-circle bg-info 
+          d-flex 
+          justify-content-center
+          align-content-center" style="height: 25px; width: 25px;">
+            <div class="text-center">
+              <i class="fa fa-step-forward"></i>
+            </div>
+          </div>
+
+      </div>
+      <div class="col-md-6 pt-1 pl-1">
+        <label id="labelSound" class="text-center">Canción</label>        
+      </div>   
+    </div>
+
+
+    <script>
+      var audios=[];
+      var audioActual = 0;
+      var duration = 0;
+      var act = 0;
+      var per=0;
+      audios.push(new Audio('./Urban Sunrise.mp3'));
+      audios.push(new Audio('./TAMMYStan Devereaux.mp3'));
+      audios.push(new Audio('./DoubleViolinConcerto.mp3'));
+
+      selectSound = (n)=>{
+       
+        this.audios[this.audioActual].pause();
+        
+        this.audioActual = this.audioActual + n;
+
+        if (this.audioActual<0) {
+          this.audioActual=0;
+        }
+        if (this.audioActual>=this.audios.length) {
+          this.audioActual= this.audios.length-1
+          
+        }
+
+        $('#labelSound').text('Canción ' + (this.audioActual+1)  + ' de ' + this.audios.length);
+ 
+
+        this.audios[this.audioActual].play();
+
+      }
+     
+      
+
+      $().ready(
+        $('#labelSound').text('Canción ' + (this.audioActual+1)  + ' de ' + this.audios.length)
+      )
+   
+      $('#play').click(()=>{
+        this.audios[this.audioActual].play();
+      });
+
+      $('#pause').click(()=>{
+        this.audios[this.audioActual].pause();
+      
+      });  
+      $('#backward').click((n)=>{
+        this.selectSound(-1);
+      });
+
+      $('#forward').click((n)=>{
+        this.selectSound(1);
+      });
+      
+      
+    </script>
+  </body>
+</html>
