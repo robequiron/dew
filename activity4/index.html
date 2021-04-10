@@ -4,12 +4,21 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"  type="text/javascript"></script>
 
     <title>Activity 3: Change the image</title>
   </head>
+  <script>
+     $.get('default.png').fail(()=>
+       $('img:eq(0)').attr('src',"change.png")
+     )
+  </script>
+  
   <body>
     <h1>Activity 3: Change the image</h1>
     <p>Change the following image with changed.png only if changed.png exists in the server (you need to add the images)</p>
-    <img src="./default.png" alt="just an image">
+    <img id="i" src="./default.png" alt="just an image">
   </body>
+
+
 </html>
